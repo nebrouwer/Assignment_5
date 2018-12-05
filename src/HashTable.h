@@ -14,16 +14,18 @@ using namespace std;
 template <class T>
 class HashTable {
   private:
+	array<LinkedList<T>, 1000> *buckets;
     int hash(T& value);
   public:
     HashTable();
-    array<LinkedList<T>, 1000> buckets;
     T find(T& value);
     void insert(T& value);
 };
 
 template <class T>
-HashTable<T>::HashTable(){}
+HashTable<T>::HashTable(){
+	buckets = 0;
+}
 
 template <class T>
 int HashTable<T>::hash(T& value) {

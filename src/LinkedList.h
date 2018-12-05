@@ -12,6 +12,8 @@ template <class T>
 struct node{
 	T data;
 	node* next;
+
+	node():data(), next(NULL) {}
 };
 
 template <class T>
@@ -61,7 +63,8 @@ void LinkedList<T>::insert(T& item){
 	temp->next = head;
 	head = temp;
 	count++;
-	if(last == NULL) last = temp;
+	if(last == NULL)
+		last = temp;
 }
 
 template <class T>

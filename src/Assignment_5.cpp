@@ -9,7 +9,7 @@
 using namespace std;
 
 int main() {
-	HashTable<UPC> hash;
+	HashTable<UPC> table;
 
 		ifstream file("upc_corpus.txt");
 		string token1;
@@ -18,12 +18,12 @@ int main() {
 			getline(file, token1, ',');
 			getline(file, token2);
 			UPC upc = UPC(token1, token2);
-			hash.insert(upc);
+			table.insert(upc);
 			//cout << token1 << token2 << endl;
 		}
 		file.close();
 
-		HashTableScanner<UPC> scanner = HashTableScanner<UPC>(&hash);
+		HashTableScanner<UPC> scanner = HashTableScanner<UPC>(table);
 
 
 		string code;
