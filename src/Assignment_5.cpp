@@ -6,6 +6,7 @@
 #include <fstream>
 #include <time.h>
 #include "HashTable.h"
+#include "HashTableScanner.h"
 using namespace std;
 
 int main() {
@@ -14,16 +15,17 @@ int main() {
 		ifstream file("upc_corpus.txt");
 		string token1;
 		string token2;
+		//if(file.good())
+			//getline(file, token1);
 		while(file.good()) { //uses , as splitter instead of white space
 			getline(file, token1, ',');
 			getline(file, token2);
 			UPC upc = UPC(token1, token2);
 			table.insert(upc);
-			//cout << token1 << token2 << endl;
 		}
 		file.close();
 
-		HashTableScanner<UPC> scanner = HashTableScanner<UPC>(table);
+		HashTableScanner<UPC> scanner = HashTableScanner<UPC>(&table);
 
 
 		string code;
@@ -33,9 +35,9 @@ int main() {
 		clock_t t;
 		t = clock();
 
-		UPC upc(code, "");
-		scanner.scan(upc);
-		cout << upc.value << endl;
+		UPC _upc(code, "");
+		scanner.scan(_upc);
+		cout << _upc.value << endl;
 
 		t = clock() - t;
 		cout << "time: " << t << " milliseconds" << endl;

@@ -5,10 +5,10 @@
 #ifndef HASHTABLE_H_
 #define HASHTABLE_H_
 #include <string>
+#include <functional>
 #include <array>
 #include "LinkedList.h"
 #include "UPC.h"
-#include "HashTableScanner.h"
 using namespace std;
 
 template <class T>
@@ -18,33 +18,39 @@ class HashTable {
     int hash(T& value);
   public:
     HashTable();
+    ~HashTable();
     T find(T& value);
     void insert(T& value);
 };
 
 template <class T>
 HashTable<T>::HashTable(){
-	buckets = 0;
+	buckets = new array<LinkedList<T>, 1000>;
 }
 
 template <class T>
 int HashTable<T>::hash(T& value) {
-	int upc = stoi(value.code);
-	return upc % 1000;
+	size_t hash = std::hash<string>{}(value.code);
+	return (int)(hash % 1000);
 }
 
 template <class T>
 T HashTable<T>::find(T& value) {
   int hashCode = hash(value);
-  LinkedList<T>& list = buckets[hashCode];
+  LinkedList<T>& list = (*buckets)[hashCode];
   return list.find(value);
 }
 
 template <class T>
 void HashTable<T>::insert(T& value) {
   int hashCode = hash(value);
-  LinkedList<T>& list = buckets[hashCode];
+  LinkedList<T>& list = (*buckets)[hashCode];
   list.insert(value);
+}
+
+template <class T>
+HashTable<T>::~HashTable(){
+	delete buckets;
 }
 
 

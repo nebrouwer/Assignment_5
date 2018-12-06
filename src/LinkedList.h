@@ -69,7 +69,7 @@ void LinkedList<T>::insert(T& item){
 
 template <class T>
 T LinkedList<T>::find(T& item){
-	node<T>* q = LinkedList<T>::head;
+	node<T>* q = head;
 	while(q != NULL){
 		if(q->data == item){
 			return q->data;
@@ -78,6 +78,7 @@ T LinkedList<T>::find(T& item){
 		}
 		delete q;
 	}
+	return item;
 }
 
 template <class T>
@@ -133,7 +134,7 @@ ostream& operator<<(ostream& os, LinkedList<T>& list){
 		os << p->data << " " << endl;
 		p = p->next;
 	}
-
+	return os;
 }
 
 template <class T>
