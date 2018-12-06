@@ -17,8 +17,10 @@ class HashTableScanner: public Scanner<T>{
 	HashTable<T> *buckets;
 
 public:
-     HashTableScanner<T>(HashTable<T> *_buckets):buckets(_buckets){}
+	// Constructor for HashTableScanner object
+    HashTableScanner<T>(HashTable<T> *_buckets):buckets(_buckets){}
 
+    // Function to scan the HashTable
 	void scan(T& product){
 		T found = buckets->find(product);
 		product = found;

@@ -28,8 +28,6 @@ class LinkedList{
 		LinkedList();
 		bool isEmpty();
 		int length();
-		T front();
-		T back();
 		void insert(T&);
 		T find(T&);
 		void deleteNode(T&);
@@ -40,22 +38,26 @@ class LinkedList{
 		~LinkedList();
 };
 
+// Main constructor for LinkedList used in HashTable array
 template <class T>
 LinkedList<T>::LinkedList(){
      head = last = NULL;
      count = 0;
 }
 
+// Returns true or false based on whether or not the list is empty
 template <class T>
 bool LinkedList<T>::isEmpty(){
 	return head == NULL;
 }
 
+// Returns the length of the list
 template <class T>
 int LinkedList<T>::length(){
 	return count;
 }
 
+// Function to insert into the list
 template <class T>
 void LinkedList<T>::insert(T& item){
 	node<T> *temp = new node<T>;
@@ -67,6 +69,7 @@ void LinkedList<T>::insert(T& item){
 		last = temp;
 }
 
+// Function to find an item in the list
 template <class T>
 T LinkedList<T>::find(T& item){
 	node<T>* q = head;
@@ -76,11 +79,11 @@ T LinkedList<T>::find(T& item){
 		}else{
 			q = q->next;
 		}
-		delete q;
 	}
 	return item;
 }
 
+// Function to delete a node in the list
 template <class T>
 void LinkedList<T>::deleteNode(T& item){
 	if(head == NULL)
@@ -109,6 +112,7 @@ void LinkedList<T>::deleteNode(T& item){
 	}
 }
 
+// Function to destroy an entire list
 template <class T>
 void LinkedList<T>::destroylist(){
 	node<T> *p;
@@ -120,6 +124,8 @@ void LinkedList<T>::destroylist(){
 	last = NULL;
 	count = 0;
 }
+
+// Overloaded = operator
 template <class T>
 LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>& list){
 	if(this != &list){
@@ -127,6 +133,8 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>& list){
 	}
 	return *this;
 }
+
+// Overloaded << operator
 template <class T>
 ostream& operator<<(ostream& os, LinkedList<T>& list){
 	node<T> *p = list.head;
@@ -137,6 +145,7 @@ ostream& operator<<(ostream& os, LinkedList<T>& list){
 	return os;
 }
 
+// Destructor for LinkedList
 template <class T>
 LinkedList<T>::~LinkedList(){
 	destroylist();

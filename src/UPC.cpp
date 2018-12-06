@@ -4,12 +4,14 @@
 
 #include "UPC.h"
 
+// Constructors for UPC object
 UPC::UPC() : code(""), value("") {}
 UPC::UPC(string upc, string product):code(upc), value(product){
 
 }
 UPC::UPC(const UPC& upc):code(upc.code), value(upc.value){}
 
+// UPC operator overloads
 bool operator<(UPC& upc1, UPC& upc2){
 	return upc1.code < upc2.code;
 }

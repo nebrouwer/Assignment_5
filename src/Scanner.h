@@ -1,5 +1,5 @@
 // Nick Brouwer
-// Assignment 4
+// Assignment 5
 
 
 #ifndef SCANNER_H_
@@ -9,6 +9,7 @@ template <class T>
 class Scanner{
 
 public:
+	// Declaration for scan function
 	virtual void scan(T& product) = 0;
     virtual ~Scanner(){}
 };

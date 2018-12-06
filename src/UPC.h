@@ -1,5 +1,5 @@
 // Nick Brouwer
-// Assignment 4
+// Assignment 5
 
 #ifndef UPC_H_
 #define UPC_H_
@@ -9,6 +9,8 @@ using namespace std;
 
 class UPC {
 public:
+
+	// Declarations for UPC.cpp
 	string code;
 	string value;
 	UPC();
